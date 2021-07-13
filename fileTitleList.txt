@@ -1,0 +1,112 @@
+Audi Q3, 2014
+
+BMW X4, 2018
+
+Chevrolet Lacetti, 2011
+
+Citroen C4, 2014
+
+FAW Besturn B50, 2012
+
+Ford Fiesta, 2018
+
+Great Wall Hover H5, 2012
+
+Honda Civic, 2010
+
+Hyundai Creta, 2021
+
+Hyundai Solaris, 2015
+
+Hyundai Solaris, 2021
+
+Kia K5, 2021
+
+Kia Optima, 2017
+
+LADA 4x4 (Нива), 2018
+
+LADA Granta, 2012
+
+LADA Granta, 2021
+
+LADA Granta, 2021
+
+LADA Kalina, 2011
+
+LADA Priora, 2016
+
+LADA Priora, 2018
+
+LADA Vesta, 2017
+
+LADA Vesta, 2020
+
+LADA Vesta, 2021
+
+LADA Vesta, 2021
+
+LADA XRAY Cross, 2021
+
+Lexus LX, 2016
+
+Mercedes-Benz GLE-класс Coupe, 2021
+
+Mitsubishi Pajero Sport, 2018
+
+Nissan Micra, 2007
+
+Nissan X-Trail, 2018
+
+Ravon R4, 2019
+
+Renault Duster, 2013
+
+Renault Kaptur, 2017
+
+Skoda Karoq, 2021
+
+Skoda Octavia, 2016
+
+Suzuki Vitara, 2021
+
+Suzuki Vitara, 2021
+
+Toyota Land Cruiser Prado, 1999
+
+Volkswagen Caravelle, 2013
+
+Volkswagen Polo, 2017
+
+Volkswagen Polo, 2021
+
+Volkswagen Polo, 2021
+
+Volkswagen Polo, 2021
+
+Volkswagen Tiguan, 2021
+
+Volkswagen Touareg, 2008
+
+Volkswagen Touareg, 2013
+
+ВАЗ (LADA) 4x4 (Нива), 2016
+
+ВАЗ (LADA) Kalina, 2010
+
+ВАЗ (LADA) Priora, 2010
+
+ВАЗ 2110, 2001
+
+ВАЗ 2112, 2006
+
+ВАЗ 2114 Samara, 2013
+
+ВАЗ Niva Travel, 2021
+
+ВАЗ Niva Travel, 2021
+
+ВАЗ Niva Travel, 2021
+
+ГАЗ ГАЗель Next, 2013
+
