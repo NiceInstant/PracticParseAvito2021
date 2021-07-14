@@ -42,8 +42,8 @@ public class WriteDocumentElements {
         for(Element title:divTitles)
         {
 
-            String stringTitle = "Марка авто:"+title.select("a[class = Link ListingItemTitle__link]").text()+"\t Цена:"
-                    +title.select("div[class = ListingItemPrice-module__content]").text()+"\n";
+            String stringTitle = "Марка авто:"+title.select("a[class = Link ListingItemTitle__link]").text()
+                            +"\t Цена:"+title.select("div[class = ListingItemPrice-module__content]").text();
             first_divTitleList.add(stringTitle);
             second_divTitleList.add(stringTitle);
 
@@ -52,7 +52,7 @@ public class WriteDocumentElements {
         Collections.sort(second_divTitleList);
         System.out.println(first_divTitleList);
         System.out.println("===================================");
-        System.out.println(first_divTitleList.equals(second_divTitleList));
+        System.out.println("Сравнение первого и второго списка"+first_divTitleList.equals(second_divTitleList));
 
         Path fileTitleList = Paths.get("fileTitleList.txt");
         Files.write(fileTitleList,first_divTitleList, StandardCharsets.UTF_8);
@@ -68,14 +68,18 @@ public class WriteDocumentElements {
             System.out.println(line);
             lineList.add(line);
         }
+
         brReader.close();
-        System.out.println(second_divTitleList.equals(lineList));
         System.out.println(lineList.size());
-        System.out.println(lineList);
+        System.out.println("Список из документа"+lineList);
         System.out.println("=======================");
         System.out.println(second_divTitleList.size());
+        System.out.println("Второй список"+second_divTitleList);
 
+        /*System.out.println("Сравнение второго списка со списком из документа :"+second_divTitleList.equals(lineList));*/
 
+        boolean equals = second_divTitleList.equals(lineList);
+        if (equals == true) System.out.println("Объявлений новых нет");
 
     }
 }
