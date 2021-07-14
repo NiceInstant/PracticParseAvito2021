@@ -3,7 +3,11 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
-import java.io.IOException;
+import java.io.*;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
@@ -30,9 +34,6 @@ public class ParseAvitoHtml {
 
                 Elements divTitles= document.select("div[class = ListingItem-module__main]");
 
-
-
-
                 List<String> first_divTitleList = new ArrayList<>();
                 List<String> second_divTitleList = new ArrayList<>();
 
@@ -43,17 +44,47 @@ public class ParseAvitoHtml {
                     String stringTitle = "Марка авто:"+title.select("a[class = Link ListingItemTitle__link]").text()+"\t Цена:"
                             +title.select("div[class = ListingItemPrice-module__content]").text()+"\n";
                     first_divTitleList.add(stringTitle);
+                    second_divTitleList.add(stringTitle);
 
                     /*System.out.println(stringTitle);*/
                 }
                 Collections.sort(first_divTitleList);
+                Collections.sort(second_divTitleList);
                 System.out.println(first_divTitleList);
                 System.out.println("===================================");
+                System.out.println(first_divTitleList.equals(second_divTitleList));
+
+                Path fileTitleList = Paths.get("fileTitleList.txt");
+                Files.write(fileTitleList,first_divTitleList, StandardCharsets.UTF_8);
+
+                /*FileReader reader = new FileReader("fileTitleList.txt");
+
+                while (reader.ready())
+                {
+                    int fileTitleList = reader.read();
+                    System.out.println(fileTitleList);
+
+                }
+                reader.close();*/
+
+                File file = new File("fileTitleList.txt");
+
+                Reader reader = new FileReader(file);
+                BufferedReader brReader = new BufferedReader(reader);
+
+                String line;
+                List<String> lineList = new ArrayList<>();
+                while((line = brReader.readLine()) != null) {
+                    System.out.println(line);
+                    lineList.add(line);
+                }
+                brReader.close();
+                System.out.println(second_divTitleList.equals(lineList));
+                System.out.println(lineList);
+                System.out.println("=======================");
+                System.out.println(second_divTitleList);
 
 
-
-               /* Path fileTitleList = Paths.get("fileTitleList.txt");
-                Files.write(fileTitleList,first_divTitleList, StandardCharsets.UTF_8);*/
 
         }
     }
