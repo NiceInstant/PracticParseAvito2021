@@ -1,10 +1,19 @@
-import java.util.ArrayList;
-import java.util.List;
 
 public class AvitoAds {
 
     private String nameAds;
     private int priceAds;
+
+    public AvitoAds(String nameAds, int priceAds)
+    {
+        this.nameAds = nameAds;
+        this.priceAds = priceAds;
+    }
+    @Override
+    public String toString(){
+
+        return "Марка Авто: "+nameAds+"  Цена : "+priceAds+"\n";
+    }
 
     public void setNameAds(String nameAds) {
         this.nameAds = nameAds;

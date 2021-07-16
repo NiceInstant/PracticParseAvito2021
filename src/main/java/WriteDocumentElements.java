@@ -3,15 +3,12 @@ import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
+import javax.xml.parsers.ParserConfigurationException;
+import javax.xml.transform.TransformerException;
 import java.io.*;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
-import java.util.stream.Collectors;
+
 
 public class WriteDocumentElements {
 
@@ -31,34 +28,44 @@ public class WriteDocumentElements {
 
     }
 
-    public void  WriteElemetAvito() throws IOException
-    {
+    public void  WriteElemetAvito() throws IOException, ParserConfigurationException, TransformerException {
         Document document = getDocument();
 
         //Все объявления о продаже
         Elements elements = document.select("div[class=iva-item-body-NPl6W]");
 
-        //Извлечение названий продоваемый машин
-        Elements h3Elements = elements.select("h3");
-        //Извлечение цены из meta
-        Elements span_metaElents = elements.select("span[data-marker=item-price]").select("meta[itemprop=price]");
-
-
-      /*  String h3Text = h3Elements.text();
-        int spanAttrPrice = Integer.parseInt(span_metaElents.attr("content"));*/
-
-
-        AvitoAds avitoAds = new AvitoAds();
+        List<AvitoAds>  avitoAdsList = new ArrayList<>();
 
         for (Element elementAds : elements) {
 
+            //Извлечение названий продоваемый машин
             String adsName = elementAds.select("h3").text();
+            //Извлечение цены
+            Elements adsPriceString = elementAds.select("span[data-marker=item-price]").select("meta[itemprop=price]");
+            int adsPrice = Integer.parseInt(adsPriceString.attr("content"));
+
+            avitoAdsList.add(new AvitoAds(adsName,adsPrice));
+        }
+        System.out.println(avitoAdsList.toString());
+        System.out.println("===========================================================================================");
+
+        CreateXmlFile createXmlFile = new CreateXmlFile();
+        createXmlFile.cretingXmlFile();
+
+
+        /*AvitoAds avitoAds = new AvitoAds();
+
+        for (Element elementAds : elements) {
+
+            //Извлечение названий продоваемый машин
+            String adsName = elementAds.select("h3").text();
+            //Извлечение цены
             Elements adsPriceString = elementAds.select("span[data-marker=item-price]").select("meta[itemprop=price]");
             int adsPrice = Integer.parseInt(adsPriceString.attr("content"));
             avitoAds.setNameAds(adsName);
             avitoAds.setPriceAds(adsPrice);
             avitoAds.display();
-        }
+        }*/
 
     }
     /*public void WriteElement() throws IOException {
