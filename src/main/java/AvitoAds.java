@@ -1,17 +1,20 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class AvitoAds {
 
     private String nameAds;
     private int priceAds;
 
-    AvitoAds(String nameAds, int priceAds)
-    {
-        this.nameAds= nameAds;
+    public void setNameAds(String nameAds) {
+        this.nameAds = nameAds;
+    }
+
+    public void setPriceAds(int priceAds) {
         this.priceAds = priceAds;
     }
 
-    public String getNameAds() {
-        return nameAds;
-    }
+    public String getNameAds() { return nameAds; }
 
     public int getPriceAds() {
         return priceAds;
@@ -19,6 +22,7 @@ public class AvitoAds {
 
     public  void display()
     {
-        System.out.println("Марка выто : "+nameAds+"\tЦена : "+priceAds);
+        System.out.println("Марка Авто: "+nameAds+"  Цена : "+priceAds);
+
     }
 }

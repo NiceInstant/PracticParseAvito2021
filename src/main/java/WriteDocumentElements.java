@@ -26,7 +26,7 @@ public class WriteDocumentElements {
         Document document = Jsoup.parse(htmlFIleAvito,"UTF-8");
 
 
-        System.out.println(document.title());
+        System.out.println(document.title()+"\n");
         return document;
 
     }
@@ -41,34 +41,31 @@ public class WriteDocumentElements {
         //Извлечение названий продоваемый машин
         Elements h3Elements = elements.select("h3");
         //Извлечение цены из meta
-        Elements span_metaElents = elements.select("span[class=price-price-32bra]").select("meta[itemprop=price]");
+        Elements span_metaElents = elements.select("span[data-marker=item-price]").select("meta[itemprop=price]");
 
 
-        String h3Text = h3Elements.first().text();
-        int spanAttrPrice = Integer.parseInt(span_metaElents.attr("content"));
-
-        AvitoAds avitoAds = new AvitoAds(h3Text,spanAttrPrice);
-        avitoAds.display();
+      /*  String h3Text = h3Elements.text();
+        int spanAttrPrice = Integer.parseInt(span_metaElents.attr("content"));*/
 
 
-        /*System.out.println(h3Text);*/
+        AvitoAds avitoAds = new AvitoAds();
 
+        for (Element elementAds : elements) {
 
-        /*for (Element elemmentspan: span_metaElents ) {
-            int spanAttrPrice = Integer.parseInt(elemmentspan.attr("content"));
-            System.out.println(spanAttrPrice);
-        }*/
-
-
-        /*System.out.println(spanAttrPrice);*/
+            String adsName = elementAds.select("h3").text();
+            Elements adsPriceString = elementAds.select("span[data-marker=item-price]").select("meta[itemprop=price]");
+            int adsPrice = Integer.parseInt(adsPriceString.attr("content"));
+            avitoAds.setNameAds(adsName);
+            avitoAds.setPriceAds(adsPrice);
+            avitoAds.display();
+        }
 
     }
-
-   /* public void WriteElement() throws IOException {
+    /*public void WriteElement() throws IOException {
 
         Document document = getDocument();
-                *//*Elements dives = document.select("a[data-marker=item-title]");
-                Elements h3Titles = dives.select("h3");*//*
+                Elements dives = document.select("a[data-marker=item-title]");
+                Elements h3Titles = dives.select("h3");
 
         Elements divTitles = document.select("div[class = ListingItem-module__main]");
 
@@ -98,30 +95,30 @@ public class WriteDocumentElements {
         String line;
         List<String> lineList = new ArrayList<>();
         while ((line = brReader.readLine()) != null) {
-            *//*System.out.println(line);*//*
+            System.out.println(line);
             lineList.add(line);
         }
         brReader.close();
 
 
-           *//* System.out.println("Есть новые объявления");*//*
+            System.out.println("Есть новые объявления");
         //Добавление в файл
             Path fileTitleList = Paths.get("fileTitleList.txt");
             Files.write(fileTitleList, first_divTitleList, StandardCharsets.UTF_8);
 
             second_divTitleList.forEach(s -> System.out.println("Из второго списка ->" + s + "\n"));
             System.out.println("------------------------------------------------------------");
-            *//*lineList.forEach(s -> System.out.println("Из документа- > " + s + "\n"));*//*
+            lineList.forEach(s -> System.out.println("Из документа- > " + s + "\n"));
 
 
-        *//*List<String> searchResult = null;*//*
+        List<String> searchResult = null;
 
         boolean searchResult;
         List<List<String>> addSearshList = new ArrayList<>();
         for (String fileList:lineList) {
-            *//*searchResult = second_divTitleList.stream().filter(second_divTitleLists->second_divTitleLists.contains(fileList)).collect(Collectors.toList());*//*
+            searchResult = second_divTitleList.stream().filter(second_divTitleLists->second_divTitleLists.contains(fileList)).collect(Collectors.toList());
 
-            *//*addSearshList.add(searchResult);*//*
+            addSearshList.add(searchResult);
             searchResult= second_divTitleList.stream().anyMatch(secondList->secondList.equals(fileList));
             if (searchResult == true)
             {
@@ -131,7 +128,7 @@ public class WriteDocumentElements {
             System.out.println(searchResult);
         }
         System.out.println(second_divTitleList);
-        *//*System.out.println(addSearshList.size());*//*
+        System.out.println(addSearshList.size());
 
 
     }*/
