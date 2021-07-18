@@ -1,3 +1,5 @@
+import org.jsoup.Jsoup;
+import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
 import org.w3c.dom.Node;
@@ -9,9 +11,31 @@ import javax.xml.transform.*;
 import javax.xml.transform.dom.DOMSource;
 import javax.xml.transform.stream.StreamResult;
 import java.io.File;
+import java.io.IOException;
+import java.util.List;
 
 public class CreateXmlFile {
-    public void cretingXmlFile() throws ParserConfigurationException, TransformerException {
+    Elements elements;
+    List<AvitoAds> avitoAdsList ;
+    public  void  setElements(Elements elements)
+    {
+        this.elements= elements;
+    }
+    public Elements getElements()
+    {
+     return elements;
+    }
+
+    public List<AvitoAds> getAvitoAdsList() {
+        return avitoAdsList;
+    }
+
+    public void setAvitoAdsList(List<AvitoAds> avitoAdsList) {
+        this.avitoAdsList = avitoAdsList;
+    }
+
+
+    public void creatingXmlFile() throws ParserConfigurationException, TransformerException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
 
@@ -25,12 +49,19 @@ public class CreateXmlFile {
         // добавляем корневой элемент в объект Document
         doc.appendChild(rootElement);
 
-        // добавляем первый дочерний элемент к корневому
-        rootElement.appendChild(getAvitoListXml(doc,"Java", "21"));
-        //добавляем второй дочерний элемент к корневому
-        rootElement.appendChild(getAvitoListXml(doc,  "C", "44"));
 
-      //  rootElement.appendChild();???!?!?!?@!?@!?@!?@@!
+
+        //Все объявления о продаже
+        Elements elements = getElements();
+        // добавляем элементы
+        for (AvitoAds avitoAdsList : avitoAdsList) {
+
+            String adsName = avitoAdsList.getNameAds();
+            int adsPrice = avitoAdsList.getPriceAds();
+
+            rootElement.appendChild(getAvitoListXml(doc,adsName, String.valueOf(adsPrice)));
+        }
+
 
         //создаем объект TransformerFactory для печати в консоль
         TransformerFactory transformerFactory = TransformerFactory.newInstance();
@@ -41,11 +72,11 @@ public class CreateXmlFile {
 
         //печатаем в консоль или файл
         StreamResult console = new StreamResult(System.out);
-        //StreamResult file = new StreamResult(new File("languages.xml"));!!!!!!!!!!!!!!!
+        StreamResult file = new StreamResult(new File("AvitoAds.xml"));
 
         //записываем данные
         transformer.transform(source, console);
-        //transformer.transform(source, file);!!!!!!!!!!!!!!!!!!!!
+        transformer.transform(source, file);
         System.out.println("Создание XML файла закончено");
     }
     private static Node getAvitoListXml(Document doc, String name, String age) {
@@ -64,3 +95,4 @@ public class CreateXmlFile {
         return node;
     }
 }
+
