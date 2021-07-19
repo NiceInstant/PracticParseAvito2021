@@ -1,4 +1,3 @@
-import org.jsoup.Jsoup;
 import org.jsoup.select.Elements;
 import org.w3c.dom.Document;
 import org.w3c.dom.Element;
@@ -23,7 +22,7 @@ public class CreateXmlFile {
     }
     public Elements getElements()
     {
-     return elements;
+        return elements;
     }
 
     public List<AvitoAds> getAvitoAdsList() {
@@ -38,11 +37,8 @@ public class CreateXmlFile {
     public void creatingXmlFile() throws ParserConfigurationException, TransformerException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
-
         builder = factory.newDocumentBuilder();
-
-        // создаем пустой объект Document, в котором будем
-        // создавать наш xml-файл
+        // создаем пустой объект Document, в котором будем создавать наш xml-файл
         Document doc = builder.newDocument();
         // создаем корневой элемент
         Element rootElement = doc.createElementNS("https://www.avito.ru/naberezhnye_chelny/avtomobili?cd=1&radius=200", "AvitoAds");
@@ -50,10 +46,9 @@ public class CreateXmlFile {
         doc.appendChild(rootElement);
 
 
-
         //Все объявления о продаже
         Elements elements = getElements();
-        // добавляем элементы
+        // Добавляем список объявлений
         for (AvitoAds avitoAdsList : avitoAdsList) {
 
             String adsName = avitoAdsList.getNameAds();
@@ -72,21 +67,24 @@ public class CreateXmlFile {
 
         //печатаем в консоль или файл
         StreamResult console = new StreamResult(System.out);
-        StreamResult file = new StreamResult(new File("AvitoAds.xml"));
+        StreamResult file = new StreamResult(new File("resourseXml/AvitoAds.xml"));
 
         //записываем данные
         transformer.transform(source, console);
         transformer.transform(source, file);
         System.out.println("Создание XML файла закончено");
     }
-    private static Node getAvitoListXml(Document doc, String name, String age) {
+    private static Node getAvitoListXml(Document doc, String name, String price) {
         Element adsAvitoListXml = doc.createElement("AdsAvitoXml");
 
-        // создаем элемент name
+        adsAvitoListXml.setAttribute("adsName", name);
+        adsAvitoListXml.setAttribute("adsPrice", price);
+
+        /*// создаем элемент name
         adsAvitoListXml.appendChild(getAvitoListXmlElements(doc, adsAvitoListXml, "adsName", name));
 
         // создаем элемент prise
-        adsAvitoListXml.appendChild(getAvitoListXmlElements(doc, adsAvitoListXml, "adsPrice", age));
+        adsAvitoListXml.appendChild(getAvitoListXmlElements(doc, adsAvitoListXml, "adsPrice", price));*/
         return adsAvitoListXml;
     }
     private static Node getAvitoListXmlElements(Document doc, Element element, String name, String value) {
@@ -95,4 +93,3 @@ public class CreateXmlFile {
         return node;
     }
 }
-
