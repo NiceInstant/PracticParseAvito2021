@@ -69,19 +69,10 @@ public class ParseWriteXmlFile {
         }
         else {
             System.out.println("НОВЫЕ ОБЪЯВЛЕНИЯ");
-            for (AvitoAds avitoAds:avitoAdsXmlList) {
-                System.out.println(avitoAds);
-            }
-            /*createXmlFile.setAvitoAdsList(avitoAdsList);
-            createXmlFile.creatingXmlFile();*/
+            /*for (AvitoAds avitoAds:avitoAdsXmlList) {
+                avitoAdsList.add(avitoAds);
+            }*/
+            System.out.println(avitoAdsList);
         }
     }
-   /* public  void  testOnHaveFile(List<AvitoAds> avitoAdsList) throws ParserConfigurationException, IOException, TransformerException {
-        if (avitoAdsXmlList.size()!=0)
-        {
-            createXmlFile.setAvitoAdsList(avitoAdsList);
-            createXmlFile.creatingXmlFile();
-        }
-    }*/
-
 }

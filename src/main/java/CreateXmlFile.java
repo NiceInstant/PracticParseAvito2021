@@ -33,8 +33,21 @@ public class CreateXmlFile {
         this.avitoAdsList = avitoAdsList;
     }
 
+   public void  createXmlFile() throws ParserConfigurationException, TransformerException {
+       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
+       DocumentBuilder builder;
+       builder = factory.newDocumentBuilder();
+       Document doc = builder.newDocument();
+       TransformerFactory transformerFactory = TransformerFactory.newInstance();
+       Transformer transformer = transformerFactory.newTransformer();
+       DOMSource source = new DOMSource(doc);
+       StreamResult file = new StreamResult(new File("resourseXml/AvitoAds.xml"));
+       transformer.transform(source, file);
 
-    public void creatingXmlFile() throws ParserConfigurationException, TransformerException, IOException {
+   }
+
+
+    public void updateXmlFile() throws ParserConfigurationException, TransformerException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         builder = factory.newDocumentBuilder();
@@ -45,9 +58,9 @@ public class CreateXmlFile {
         // добавляем корневой элемент в объект Document
         doc.appendChild(rootElement);
 
-
         //Все объявления о продаже
         Elements elements = getElements();
+
         // Добавляем список объявлений
         for (AvitoAds avitoAdsList : avitoAdsList) {
 
@@ -56,7 +69,6 @@ public class CreateXmlFile {
 
             rootElement.appendChild(getAvitoListXml(doc,adsName, String.valueOf(adsPrice)));
         }
-
 
         //создаем объект TransformerFactory для печати в консоль
         TransformerFactory transformerFactory = TransformerFactory.newInstance();

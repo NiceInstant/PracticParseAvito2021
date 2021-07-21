@@ -1,3 +1,4 @@
+import java.util.Objects;
 
 public class AvitoAds {
 
@@ -14,7 +15,7 @@ public class AvitoAds {
 
         return "Марка Авто: "+nameAds+"  Цена : "+priceAds+"\n";
     }
-    @Override
+ /*   @Override
     public boolean equals(Object o) {
         // 1
         if (this == o) {
@@ -30,6 +31,19 @@ public class AvitoAds {
         AvitoAds avitoAds = (AvitoAds) o;
         return priceAds == avitoAds.priceAds  &&
                 nameAds.equals(avitoAds.nameAds);
+    }*/
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        AvitoAds avitoAds = (AvitoAds) o;
+        return priceAds == avitoAds.priceAds && Objects.equals(nameAds, avitoAds.nameAds);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(nameAds, priceAds);
     }
 
     public String getNameAds() { return nameAds; }
