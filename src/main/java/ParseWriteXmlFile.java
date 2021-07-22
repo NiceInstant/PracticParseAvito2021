@@ -17,7 +17,6 @@ import java.util.Iterator;
 import java.util.List;
 
 public class ParseWriteXmlFile {
-    CreateXmlFile createXmlFile = new CreateXmlFile();
     List<AvitoAds> avitoAdsXmlList = new ArrayList<>();
     public  void  parseAndWriteXmlDocument() throws ParserConfigurationException, IOException, SAXException {
         // Получение фабрики, чтобы после получить билдер документов.
@@ -51,7 +50,6 @@ public class ParseWriteXmlFile {
     }
 
     //Сравнение объявлений на наличие новых
-
     public void equalsLists(List<AvitoAds> avitoAdsList) throws ParserConfigurationException, IOException, TransformerException {
         List<AvitoAds> newAvitoAdsList = new ArrayList<>();
         boolean metka;
@@ -73,6 +71,7 @@ public class ParseWriteXmlFile {
         else {
             System.out.println("НОВЫЕ ОБЪЯВЛЕНИЯ");
             System.out.println(newAvitoAdsList);
+            CreateXmlFile createXmlFile = new CreateXmlFile();
             createXmlFile.updateXmlFile(newAvitoAdsList);
         }
 

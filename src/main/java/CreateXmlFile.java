@@ -14,38 +14,6 @@ import java.io.IOException;
 import java.util.List;
 
 public class CreateXmlFile {
-    Elements elements;
-    List<AvitoAds> avitoAdsList ;
-    public  void  setElements(Elements elements)
-    {
-        this.elements= elements;
-    }
-    public Elements getElements()
-    {
-        return elements;
-    }
-
-    public List<AvitoAds> getAvitoAdsList() {
-        return avitoAdsList;
-    }
-
-    public void setAvitoAdsList(List<AvitoAds> avitoAdsList) {
-        this.avitoAdsList = avitoAdsList;
-    }
-
-   public void  createXmlFile() throws ParserConfigurationException, TransformerException {
-       DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
-       DocumentBuilder builder;
-       builder = factory.newDocumentBuilder();
-       Document doc = builder.newDocument();
-       TransformerFactory transformerFactory = TransformerFactory.newInstance();
-       Transformer transformer = transformerFactory.newTransformer();
-       DOMSource source = new DOMSource(doc);
-       StreamResult file = new StreamResult(new File("resourseXml/AvitoAds.xml"));
-       transformer.transform(source, file);
-
-   }
-
 
     public void updateXmlFile(List<AvitoAds> list) throws ParserConfigurationException, TransformerException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
@@ -57,9 +25,6 @@ public class CreateXmlFile {
         Element rootElement = doc.createElementNS("https://www.avito.ru/naberezhnye_chelny/avtomobili?cd=1&radius=200", "AvitoAds");
         // добавляем корневой элемент в объект Document
         doc.appendChild(rootElement);
-
-        //Все объявления о продаже
-        Elements elements = getElements();
 
         // Добавляем список объявлений
         for (AvitoAds avitoAdsList : list) {

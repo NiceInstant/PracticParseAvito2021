@@ -13,6 +13,15 @@ import java.util.List;
 
 public class WriteDocumentElements {
     CreateXmlFile createXmlFile = new CreateXmlFile();
+    List<AvitoAds> avitoAdsList ;
+
+    public List<AvitoAds> getAvitoAdsList() {
+        return avitoAdsList;
+    }
+
+    public void setAvitoAdsList(List<AvitoAds> avitoAdsList) {
+        this.avitoAdsList = avitoAdsList;
+    }
 
     private Document getDocument() throws IOException {
 
@@ -29,7 +38,7 @@ public class WriteDocumentElements {
             System.out.println("Файл существует.");
         } else {
             System.out.println("Файл не существует.");
-            createXmlFile.updateXmlFile((createXmlFile.getAvitoAdsList()));
+            createXmlFile.updateXmlFile(getAvitoAdsList());
         }
     }
 
@@ -40,7 +49,6 @@ public class WriteDocumentElements {
 
         //Все объявления о продаже
         Elements elements = document.select("div[class=iva-item-body-NPl6W]");
-        createXmlFile.setElements(elements);
 
         List<AvitoAds>  avitoAdsList = new ArrayList<>();
 
@@ -53,17 +61,15 @@ public class WriteDocumentElements {
             int adsPrice = Integer.parseInt(adsPriceString.attr("content"));
 
             avitoAdsList.add(new AvitoAds(adsName,adsPrice));
-
         }
 
-        /*System.out.println(avitoAdsList.toString());*/
         System.out.println("Список объявлений на данных момент");
         for (AvitoAds avitoAds:avitoAdsList) {
             System.out.println("Марка Авто: "+avitoAds.getNameAds()+"  Цена : "+avitoAds.getPriceAds());
         }
 
         System.out.println("===========================================================================================");
-        createXmlFile.setAvitoAdsList(avitoAdsList);
+        setAvitoAdsList(avitoAdsList);
         checkFile("resourseXml/AvitoAds.xml");
         System.out.println("===========================================================================================");
         System.out.println("Список объявлений из документа ");
