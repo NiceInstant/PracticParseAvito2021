@@ -47,7 +47,7 @@ public class CreateXmlFile {
    }
 
 
-    public void updateXmlFile() throws ParserConfigurationException, TransformerException, IOException {
+    public void updateXmlFile(List<AvitoAds> list) throws ParserConfigurationException, TransformerException, IOException {
         DocumentBuilderFactory factory = DocumentBuilderFactory.newInstance();
         DocumentBuilder builder;
         builder = factory.newDocumentBuilder();
@@ -62,7 +62,7 @@ public class CreateXmlFile {
         Elements elements = getElements();
 
         // Добавляем список объявлений
-        for (AvitoAds avitoAdsList : avitoAdsList) {
+        for (AvitoAds avitoAdsList : list) {
 
             String adsName = avitoAdsList.getNameAds();
             int adsPrice = avitoAdsList.getPriceAds();

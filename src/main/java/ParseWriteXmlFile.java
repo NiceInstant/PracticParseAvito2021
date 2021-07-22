@@ -53,26 +53,28 @@ public class ParseWriteXmlFile {
     //Сравнение объявлений на наличие новых
 
     public void equalsLists(List<AvitoAds> avitoAdsList) throws ParserConfigurationException, IOException, TransformerException {
+        List<AvitoAds> newAvitoAdsList = new ArrayList<>();
+        boolean metka;
+        int calculate;
         for (AvitoAds avitoAds:avitoAdsList) {
-            Iterator<AvitoAds> iterator = avitoAdsXmlList.iterator();
-            while (iterator.hasNext()) {
-                AvitoAds avitoAds1 = iterator.next();
-                boolean metka = avitoAds1.equals(avitoAds);
+            calculate = 0;
+            for(AvitoAds avitoAds1Xml:avitoAdsXmlList) {
+                metka = avitoAds1Xml.equals(avitoAds);
                 if (metka==true){
-                    iterator.remove();
+                    calculate++;//ДОРАБОТАТЬ УСЛОВИЕ ДОЛЖНО БЫТЬ ЕСЛИ ВО ВСЕМ СПИСКЕ ЕГО НЕТ ТО ДОБАВЬ В СПИСОК
                 }
             }
+            if (calculate ==0)
+                newAvitoAdsList.add(avitoAds);
         }
-        if (avitoAdsXmlList == null || avitoAdsXmlList.size()==0)
-        {
+        if(newAvitoAdsList == null||newAvitoAdsList.size()==0){
             System.out.println("Новых Объявлений нет");
         }
         else {
             System.out.println("НОВЫЕ ОБЪЯВЛЕНИЯ");
-            /*for (AvitoAds avitoAds:avitoAdsXmlList) {
-                avitoAdsList.add(avitoAds);
-            }*/
-            System.out.println(avitoAdsList);
+            System.out.println(newAvitoAdsList);
+            createXmlFile.updateXmlFile(newAvitoAdsList);
         }
+
     }
 }

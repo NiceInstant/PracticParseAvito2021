@@ -29,7 +29,7 @@ public class WriteDocumentElements {
             System.out.println("Файл существует.");
         } else {
             System.out.println("Файл не существует.");
-            createXmlFile.updateXmlFile();
+            createXmlFile.updateXmlFile((createXmlFile.getAvitoAdsList()));
         }
     }
 
@@ -62,11 +62,7 @@ public class WriteDocumentElements {
             System.out.println("Марка Авто: "+avitoAds.getNameAds()+"  Цена : "+avitoAds.getPriceAds());
         }
 
-
-      /*parseWriteXmlFile.testOnHaveFile(avitoAdsList);*/
         System.out.println("===========================================================================================");
-        //создание пустого файла
-        //------createXmlFile.createXmlFile();
         createXmlFile.setAvitoAdsList(avitoAdsList);
         checkFile("resourseXml/AvitoAds.xml");
         System.out.println("===========================================================================================");
@@ -74,10 +70,7 @@ public class WriteDocumentElements {
         parseWriteXmlFile.parseAndWriteXmlDocument();
         System.out.println("===========================================================================================");
         parseWriteXmlFile.equalsLists(avitoAdsList);
-        createXmlFile.updateXmlFile();
 
-        /*createXmlFile.setAvitoAdsList(avitoAdsList);
-        createXmlFile.updateXmlFile();*/
 
 
 
